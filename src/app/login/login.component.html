@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Logowanie</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Adres e-mail:</label>
+            <!-- <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" /> -->
+            <input type="email" class="form-control" id="email" [formControlName]="'email'" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+              <div *ngIf="f['email'].errors['required']">Adres e-mail jest wymagany.</div>
+              <div *ngIf="f['email'].errors['email']">Adres e-mail jest nieprawidłowy.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Hasło:</label>
+            <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">Hasło jest wymagane.</div>
+              <div *ngIf="f['password'].errors['minlength']">Hasło musi zawierać co najmniej 6 znaków.</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        </form>
+      </div>
+    </div>
+  </div>
