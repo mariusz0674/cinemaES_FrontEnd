@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Lista użytkowników</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa użytkownika</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Email</th>
+      <th>Rola</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.firstname }}</td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+
+      <td class="actions-cell">
+        <div *ngIf="user!==selectedUser">
+
+          <button class="btn btn-danger" (click)="deleteUser(user)">Usuń</button>
+          <button class="btn btn-primary" (click)="editUser(user)">Edytuj</button>
+          <button class="btn btn-secondary" (click)="changePassword(user)">Zmień hasło</button>
+        </div>
+        <div *ngIf="user===selectedUser">
+          <select [(ngModel)]="user.role">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+            <option value="worker">Worker</option>
+            <option value="player">Player</option>
+          </select>
+          <button class="btn btn-success" (click)="saveUser(user)">Zapisz</button>
+          <button class="btn btn-secondary" (click)="cancelEdit(user)">Anuluj</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,7 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+.modal-header{
+  justify-content: space-between;
+}
+ul {
+  list-style-type: none;
+}
