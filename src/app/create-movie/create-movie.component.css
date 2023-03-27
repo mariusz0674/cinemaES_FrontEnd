@@ -1,0 +1,83 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+input[type="text"], input[type="number"] {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  width: 80%;
+  font-size: 1.2rem;
+}
+
+input[type="number"] {
+  width: 5rem;
+}
+
+label {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group label {
+  margin-right: 1rem;
+}
+
+.form-group input[type="number"] {
+  margin-right: 0.5rem;
+}
+
+.duration-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.duration-input label {
+  margin-right: 0.5rem;
+}
+
+.duration-input input[type="number"] {
+  width: 5rem;
+  margin-right: 0.5rem;
+}
+
+.duration-input input[type="text"] {
+  width: 5rem;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}

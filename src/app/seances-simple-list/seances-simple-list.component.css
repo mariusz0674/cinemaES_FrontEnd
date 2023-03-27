@@ -1,0 +1,33 @@
+.container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  text-align: center;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  margin-right: 5px;
+}
+
+.btn:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

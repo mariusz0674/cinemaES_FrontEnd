@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {RegisterRequestPayload} from "../payload/registration.request.payload";
+import { ToastrService } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr'
 import {SyncStorage} from "ngx-webstorage";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 
@@ -21,7 +25,8 @@ export class RegistrationComponent implements OnInit{
   }
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              private toastr: ToastrService
               ) {
     this.registrationForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -54,17 +59,18 @@ export class RegistrationComponent implements OnInit{
       this.registerRequestPayload.email =  this.registrationForm.get('email').value;
       this.registerRequestPayload.firstname =  this.registrationForm.get('firstname').value;
       this.registerRequestPayload.lastname =  this.registrationForm.get('lastname').value;
-      this.authService.register(this.registerRequestPayload).subscribe(() => {
+      this.authService.register(this.registerRequestPayload).subscribe(() => {3
+        this.toastr.success("Registration success!!")
         this.router.navigate(['/login'], { queryParams: { registered: 'true' } });
-      }, () => {
-        console.log("error()");
-        //this.toastr.error('Registration Failed! Please try again');
+      }, (error) => {
+        console.log(error);
+        this.toastr.error('Registration Failed! Try different username')
       });
 
     }
 
     // Przeprowadź proces logowania i przekieruj użytkownika na stronę główną
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   get f() { return this.registrationForm.controls; }

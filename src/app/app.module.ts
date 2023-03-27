@@ -13,6 +13,12 @@ import { DemoComponent } from './demo/demo.component';
 import { HomeComponent } from './home/home.component';
 import {TokenInterceptor} from "./auth/token-interceptor";
 import { UserManagmentComponent } from './user-managment/user-managment/user-managment.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import {CommonModule} from "@angular/common";
+import { SeancesSimpleListComponent } from './seances-simple-list/seances-simple-list.component';
+import { CreateMovieComponent } from './create-movie/create-movie.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
 
 
 @NgModule({
@@ -24,6 +30,9 @@ import { UserManagmentComponent } from './user-managment/user-managment/user-man
     DemoComponent,
     HomeComponent,
     UserManagmentComponent,
+    SeancesSimpleListComponent,
+    CreateMovieComponent,
+    MovieListComponent,
 
   ],
   imports: [
@@ -32,7 +41,10 @@ import { UserManagmentComponent } from './user-managment/user-managment/user-man
     ReactiveFormsModule,  // Dodaj ReactiveFormsModule do imports
     FormsModule, // Dodaj FormsModule
     NgxWebstorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    CommonModule
 
   ],
   providers: [{

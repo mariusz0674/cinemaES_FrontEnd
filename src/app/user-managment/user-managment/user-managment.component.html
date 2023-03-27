@@ -30,12 +30,13 @@
         </div>
         <div *ngIf="user===selectedUser">
           <select [(ngModel)]="user.role">
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-            <option value="worker">Worker</option>
-            <option value="player">Player</option>
+            <option value="ADMIN">Admin</option>
+            <option value="CASHIER">Kasjer</option>
+            <option value="ATTENDANT">Obsługa</option>
+            <option value="ADMINISTRATION">Administracja</option>
+            <option value="DEFAULT">Domyślna</option>
           </select>
-          <button class="btn btn-success" (click)="saveUser(user)">Zapisz</button>
+          <button class="btn btn-success" (click)="updateUser(user)">Zapisz</button>
           <button class="btn btn-secondary" (click)="cancelEdit(user)">Anuluj</button>
         </div>
       </td>

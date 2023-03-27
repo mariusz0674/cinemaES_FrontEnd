@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginRequestPayload} from "../payload/login.request.payload";
 import {AuthService} from "../auth.service";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              private toastr: ToastrService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -50,11 +52,12 @@ onSubmit() {
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginRequestPayload).subscribe(() => {
+      this.toastr.success("Login success!!!")
       this.router.navigate(['/home']);
 
     }, () => {
       console.log("error()");
-      //this.toastr.error('Registration Failed! Please try again');
+      this.toastr.error('Login! Please try again');
     });
 
 

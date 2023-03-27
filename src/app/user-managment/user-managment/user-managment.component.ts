@@ -44,10 +44,16 @@ export class UserManagmentComponent implements OnInit {
   editUser(user:UserModel):void{
     this.selectedUser = user;
   }
-  saveUser(user: UserModel){
-    return;
+  updateUser(user: UserModel){
+    this.userService.updateUser(user).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => console.log(error)
+    );
   }
   cancelEdit(user: UserModel){
+    this.selectedUser = null;
     return;
   }
   updateRole(user: UserModel, newRole: string) {

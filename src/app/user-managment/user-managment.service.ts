@@ -18,4 +18,8 @@ export class UserManagmentService {
     return this.http.delete<Boolean>('http://localhost:8081/api/v1/usersmenager/delete?userId='+id);
 
   }
+
+  updateUser(user: UserModel): Observable<any> {
+    return this.http.put<Boolean>('http://localhost:8081/api/v1/usersmenager/update', user);
+  }
 }

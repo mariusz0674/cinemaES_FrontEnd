@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 
-    if (req.url.includes('login') || req.url.includes('register') ) {
+    if (req.url.includes('login') || req.url.includes('register') || true) {
       return next.handle(req);
     }
 
