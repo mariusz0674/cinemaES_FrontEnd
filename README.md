@@ -9,6 +9,7 @@ Login/Register
 JWT token authentication
 Roles and privileges.
 The application is currently under development.
+![Alt Text](https://github.com/mariusz0674/cinemaES_FrontEnd/blob/master/MovieFront.gif)
 
 
 
