@@ -7,8 +7,8 @@ export interface SimpleSeanceModel{
    id: number;
 
    date: string;
+   hall_id: string;
 
-   movie_title: String;
-
+   movie_title: string;
 
 }

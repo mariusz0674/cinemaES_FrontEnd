@@ -12,6 +12,8 @@ import {AuthResponse} from "./payload/auth.response";
 })
 
 export class AuthService {
+  isLogged$ = false;
+
   constructor(private httpClient: HttpClient,
               private localStorage: LocalStorageService) {
 
@@ -19,14 +21,17 @@ export class AuthService {
   isLoggedIn(): boolean {
 
     if(this.localStorage.retrieve('jwttoken') != null){
+      this.isLogged$ = true;
       return true;
-    }return false;
+    }
+    this.isLogged$ = false;
+    return false;
   }
-  register( registerRequestPayload ): Observable<boolean>{
-    return this.httpClient.post<boolean>('http://localhost:8081/api/v1/auth/register', registerRequestPayload )
+  register( registerRequestPayload: RegisterRequestPayload ): Observable<any>{
+    return this.httpClient.post('http://localhost:8081/api/v1/auth/register', registerRequestPayload, { responseType: 'text' });
   }
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    return this.httpClient.post<AuthResponse>('http://localhost:8081/api/v1/auth/login', loginRequestPayload )
+    return this.httpClient.post<AuthResponse>('http://localhost:8081/api/v1/auth/login', loginRequestPayload)
       .pipe(map(data => {
         this.localStorage.store('jwtToken', data.jwttoken);
         this.localStorage.store('username', data.username);
@@ -43,20 +48,8 @@ export class AuthService {
     return this.localStorage.retrieve('jwtToken');
   }
 
-  // refreshTokenPayload = {
-  //   refreshToken: this.getRefreshToken(),
-  //   username: this.getUserName()
-  // }
-  //
-  // isLoggedIn(): boolean {
-  //   if(this.localStorage.retrieve('refreshToken') != null){
-  //     return true;
-  //   }return false;
-  // }
-  //
 
-  //
-  //
+
   refreshToken() {
     const refreshTokenPayload = {
       refreshToken: this.getRefreshToken(),
@@ -69,7 +62,7 @@ export class AuthService {
       }));
   }
   //
-  //
+
 
   //
   getRefreshToken() {
@@ -79,29 +72,18 @@ export class AuthService {
   getUserName() {
     return this.localStorage.retrieve('username');
   }
-  //
-  // getExpirationTime() {
-  //   return this.localStorage.retrieve('expiresAt');
-  // }
-  //
-  //
+//
   //
 
-  //
-
-  //
   logout() {
-    // this.httpClient.post('http://localhost:8081/api/auth/logout', this.refreshTokenPayload,
-    //   { responseType: 'text' })
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   }, error => {
-    //     throwError(error);
-    //   })
     this.localStorage.clear('jwttoken');
     this.localStorage.clear('username');
     this.localStorage.clear('refreshtoken');
     this.localStorage.clear('role');
+  }
+
+  getRole() {
+    return this.localStorage.retrieve('role');
   }
 
 }

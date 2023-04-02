@@ -8,10 +8,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  isLoggedIn = false;
+  isLoggedIn$ = false;
+  myRole$;
 
   constructor(private authService: AuthService,
-              private router: Router) {}
+              private router: Router) {
+    this.myRole$ = authService.getRole();
+  }
 
 
   logout(): void {
@@ -22,15 +25,51 @@ export class HeaderComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.myRole$ = this.authService.getRole();
     //location.reload()
   }
   ngOnChanges(){
     location.reload()
   }
   isLogIn(): boolean{
-    this.isLoggedIn = this.authService.isLoggedIn();
-    return this.isLoggedIn;
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+    return this.isLoggedIn$;
   }
 
+  checkMyPermissions(actionToVerify: string) {
+    switch (actionToVerify){
+      case "seances-simple-list":{
+        const setAuth = new Set(["ADMIN", "CASHIER", "ATTENDANT", "ADMINISTRATION", "DEFAULT"]);
+        //return setAuth.has(this.myRole$);
+        return true;
+        break;
+      }
+      case "create-movie":{
+        const setAuth = new Set(["ADMIN", "ADMINISTRATION"]);
+        return setAuth.has(this.myRole$);
+        break;
+      }
+      case "create-seance":{
+        const setAuth = new Set(["ADMIN", "ADMINISTRATION"]);
+        return setAuth.has(this.myRole$);
+        break;
+      }
+      case "user-managment":{
+        const setAuth = new Set(["ADMIN"]);
+        return setAuth.has(this.myRole$);
+        break;
+      }
+      case "movie-list":{
+        const setAuth = new Set(["ADMIN", "CASHIER", "ATTENDANT", "ADMINISTRATION", "DEFAULT"]);
+        return setAuth.has(this.myRole$);
+        break;
+      }
+      default:
+        return false;
+        break;
+    }
+    return false;
+
+  }
 }

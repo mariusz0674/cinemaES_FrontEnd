@@ -19,13 +19,17 @@
             <th>Date</th>
             <th>Audio Language</th>
             <th>Subtitle</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let seance of selectedSeances">
-            <td>{{ seance.date }}</td>
+            <td>{{ seance.date | date: 'dd.MM.yyyy HH:mm'}}</td>
             <td>{{ seance.audioLanguage }}</td>
             <td>{{ seance.subtitle ? 'Yes' : 'No' }}</td>
+            <td style="text-align: center">
+              <button class="btn btn-primary btn-sm d-block mx-auto reserve-btn" (click)="reserveSeance(seance)">Reserve</button>
+            </td>
           </tr>
           </tbody>
         </table>

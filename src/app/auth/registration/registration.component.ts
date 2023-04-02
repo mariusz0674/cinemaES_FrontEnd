@@ -59,11 +59,13 @@ export class RegistrationComponent implements OnInit{
       this.registerRequestPayload.email =  this.registrationForm.get('email').value;
       this.registerRequestPayload.firstname =  this.registrationForm.get('firstname').value;
       this.registerRequestPayload.lastname =  this.registrationForm.get('lastname').value;
-      this.authService.register(this.registerRequestPayload).subscribe(() => {3
+      this.authService.register(this.registerRequestPayload).subscribe((responseMessage) => {
         this.toastr.success("Registration success!!")
         this.router.navigate(['/login'], { queryParams: { registered: 'true' } });
+        console.log(responseMessage);
       }, (error) => {
         console.log(error);
+
         this.toastr.error('Registration Failed! Try different username')
       });
 

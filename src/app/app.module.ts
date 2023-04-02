@@ -19,6 +19,9 @@ import {CommonModule} from "@angular/common";
 import { SeancesSimpleListComponent } from './seances-simple-list/seances-simple-list.component';
 import { CreateMovieComponent } from './create-movie/create-movie.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
+import { CreateSeanceComponent } from './create-seance/create-seance.component';
+import { ReservationControlerComponent } from './reservation-controler/reservation-controler.component';
+import { ReserveSeanceComponent } from './reserve-seance/reserve-seance.component';
 
 
 @NgModule({
@@ -33,6 +36,10 @@ import { MovieListComponent } from './movie-list/movie-list.component';
     SeancesSimpleListComponent,
     CreateMovieComponent,
     MovieListComponent,
+    CreateSeanceComponent,
+    ReservationControlerComponent,
+    ReserveSeanceComponent,
+
 
   ],
   imports: [
@@ -44,7 +51,7 @@ import { MovieListComponent } from './movie-list/movie-list.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    CommonModule
+    CommonModule,
 
   ],
   providers: [{

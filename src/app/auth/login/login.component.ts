@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private authService: AuthService,
               private toastr: ToastrService
+
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -52,9 +53,11 @@ onSubmit() {
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginRequestPayload).subscribe(() => {
-      this.toastr.success("Login success!!!")
-      this.router.navigate(['/home']);
+      //this.location.go('/');
+      this.router.navigate(['/'] ).then(() => {
+        location.reload();
 
+      });
     }, () => {
       console.log("error()");
       this.toastr.error('Login! Please try again');

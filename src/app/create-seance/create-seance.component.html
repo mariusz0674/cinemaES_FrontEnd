@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h1>Create Seance</h1>
+
+
+  <form (ngSubmit)="createSeance()" #seanceForm="ngForm" class="mb-3">
+    <div class="form-group row">
+      <label for="hallId" class="col-sm-2 col-form-label">Hall ID</label>
+      <div class="col-sm-4">
+        <select id="hallId" name="hallId" class="form-control" [(ngModel)]="seance.hall_id" required>
+          <option *ngFor="let hall of halls" [value]="hall.id">{{ hall.id }}</option>
+        </select>      </div>
+
+      <label for="date" class="col-sm-2 col-form-label">Date</label>
+      <div class="col-sm-4">
+        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="seance.date" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="subtitle" class="col-sm-2 col-form-label">Subtitle</label>
+      <div class="col-sm-4">
+        <select id="subtitle" name="subtitle" class="form-control" [(ngModel)]="seance.subtitle" required>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <label for="audioLanguage" class="col-sm-2 col-form-label">Audio Language</label>
+      <div class="col-sm-4">
+        <select id="audioLanguage" name="audioLanguage" class="form-control" [(ngModel)]="seance.audioLanguage" required>
+          <option *ngFor="let language of audioLanguages" [value]="language">{{ language }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="movie_title">Movie Title</label>
+      <select id="movie_title" name="movie_title" class="form-control custom-select" [(ngModel)]="seance.movie_title" required>
+        <option *ngFor="let movie of movies" [value]="movie.title">{{ movie.title }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Seance</button>
+  </form>
+</div>

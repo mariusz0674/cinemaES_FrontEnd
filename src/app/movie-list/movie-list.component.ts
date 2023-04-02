@@ -3,6 +3,7 @@ import {MovieModel} from "../dto/movie-model";
 import {SimpleSeanceModel} from "../dto/simple-seance-model";
 import {MovieService} from "../service/movie.service";
 import {SeancesService} from "../service/seances.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-list',
@@ -17,7 +18,8 @@ export class MovieListComponent implements OnInit{
   selectedSeances: SimpleSeanceModel[];
 
   constructor(private movieService: MovieService,
-              private seancesService: SeancesService) {}
+              private seancesService: SeancesService,
+              private router: Router) {}
 
   onSelectMovie(movie: MovieModel): void {
     this.selectedMovie = movie;
@@ -37,6 +39,14 @@ export class MovieListComponent implements OnInit{
   }
   isSelected(movie: MovieModel): boolean {
     return this.selectedMovie === movie;
+  }
+  reserveSeance(seance: SimpleSeanceModel) {
+    const seanceToReserv = seance;
+    console.log(seanceToReserv.movie_title);
+
+    this.router.navigate(['/reserve-seance'],{ state: seanceToReserv });
+
+    //this.router.navigate(['/reserve-seance'], { state: { seance: seance } });
   }
 
 }
