@@ -1,0 +1,16 @@
+.navbar{
+  margin-left: 30px; margin-right: 30px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  margin-right: 10px;
+}
+
+.navbar-nav .rounded-circle {
+  margin-right: 10px;
+}

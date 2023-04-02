@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Rejestracja użytkownika</h1>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" id="email" formControlName='email' [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+      <div *ngIf="registrationForm.get('email').errors " class="invalid-feedback">
+        <div *ngIf="registrationForm.get('email').errors['required']">Pole wymagane</div>
+        <div *ngIf="registrationForm.get('email').errors['email']">Niepoprawny format adresu email</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Nazwa użytkownika</label>
+      <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+      <div *ngIf="registrationForm.get('username').errors && submitted " class="invalid-feedback">
+        Pole wymagane
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Imię</label>
+      <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f['firstname'].errors }">
+      <div *ngIf="registrationForm.get('firstname').invalid  " class="invalid-feedback">
+        Pole wymagane
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Nazwisko</label>
+      <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f['lastname'].errors }">
+      <div *ngIf="registrationForm.get('lastname')?.invalid " class="invalid-feedback">
+        Pole wymagane
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Hasło</label>
+      <input type="text" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+      <div *ngIf="registrationForm.get('password')?.invalid " class="invalid-feedback">
+        Pole wymagane
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+  </form>
+</div>

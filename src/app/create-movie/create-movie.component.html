@@ -1,0 +1,13 @@
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" formControlName="title">
+  </div>
+  <div class="form-group duration-input">
+    <label>Czas trwania:</label>
+    <input type="number" formControlName="hours" placeholder="h" min="0" max="5">
+    <input type="number" formControlName="minutes" placeholder="m" min="0" max="59">
+    <input type="number" formControlName="seconds" placeholder="s" min="0" max="59">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
