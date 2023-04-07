@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MovieModel} from "../dto/movie-model";
 import {MovieService} from "../service/movie.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-create-movie',
@@ -40,10 +41,12 @@ export class CreateMovieComponent implements OnInit {
       duration: duration
     };
 
+
+
     this.movieService.saveMovie(movie).subscribe(
-      data => console.log(data),
       error => console.log(error)
     );
+
     // do something with the movie object, like sending it to a backend API
     console.log(movie);
   }

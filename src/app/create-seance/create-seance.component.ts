@@ -60,11 +60,8 @@ export class CreateSeanceComponent {
 
   createSeance(): void {
     this.seanceService.createSeance(this.seance)
-      .subscribe(() => {
-        console.log('Seance created successfully!');
-      }, error => {
-        console.log('Error creating seance: ', error);
-      });
+      .subscribe(error => console.log('Error creating seance: ', error)
+      );
   }
 
   getMovies() {

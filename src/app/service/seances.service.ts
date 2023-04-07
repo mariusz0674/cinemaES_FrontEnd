@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {Observable, tap, throwError} from "rxjs";
 import {SimpleSeanceModel} from "../dto/simple-seance-model";
 import {UserModel} from "../user-managment/user-model";
 import {HallModel} from "../dto/hall-model";
+import {catchError} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeancesService {
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient,
+              private toastr: ToastrService){}
 
 
   getAll(): Observable<Array<SimpleSeanceModel>> {
@@ -18,7 +21,21 @@ export class SeancesService {
   }
 
   createSeance(simpleSeance :SimpleSeanceModel): Observable<any>{
-    return this.httpClient.post("http://localhost:8081/api/v1/seance/add", simpleSeance );
+    console.log("Tu post");
+    return this.httpClient.post("http://localhost:8081/api/v1/seance/add", simpleSeance )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 409) {
+            this.toastr.error(error.error)
+          }
+          return throwError(error.error);
+        }), tap(()=>{
+          this.toastr.success('Seansik dodany');
+        })
+      );
+
+
+
   }
 
   HallModel
