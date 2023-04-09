@@ -27,6 +27,8 @@ export class SeancesService {
         catchError((error: HttpErrorResponse) => {
           if (error.status === 409) {
             this.toastr.error(error.error)
+          }else{
+            this.toastr.error('Seans nie został dodany');
           }
           return throwError(error.error);
         }), tap(()=>{
