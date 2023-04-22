@@ -7,6 +7,7 @@ An application for a cinema where you can:
 - cinema events, 
 - manage them, 
 - reserve a seat at the cinema.
+
 Angular, Typescript and Bootstrap are used for development.
 Created for learning and practicing purposes.
 It presents the applications of the prepared Backend software.
