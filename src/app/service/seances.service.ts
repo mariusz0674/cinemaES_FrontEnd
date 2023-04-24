@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, tap, throwError} from "rxjs";
 import {SimpleSeanceModel} from "../dto/simple-seance-model";
-import {UserModel} from "../user-managment/user-model";
 import {HallModel} from "../dto/hall-model";
 import {catchError} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
@@ -35,16 +34,12 @@ export class SeancesService {
           this.toastr.success('Seansik dodany');
         })
       );
-
-
-
   }
 
   HallModel
 
 
   getHalls():Observable<Array<HallModel>> {
-
     return this.httpClient.get<Array<HallModel>>('http://localhost:8081/api/v1/hall/getAll');
   }
 }

@@ -5,7 +5,6 @@ import {LoginRequestPayload} from "../payload/login.request.payload";
 import {AuthService} from "../auth.service";
 import {ToastrService} from "ngx-toastr";
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
-
   loginRequestPayload: LoginRequestPayload;
 
   constructor(private formBuilder: FormBuilder,
@@ -45,7 +43,6 @@ get f() { return this.loginForm.controls; }
 onSubmit() {
   this.submitted = true;
 
-  // Przerwij, jeśli formularz jest nieprawidłowy
   if (this.loginForm.invalid) {
     return;
   }
@@ -53,7 +50,6 @@ onSubmit() {
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginRequestPayload).subscribe(() => {
-      //this.location.go('/');
       this.router.navigate(['/'] ).then(() => {
         location.reload();
 
@@ -63,12 +59,9 @@ onSubmit() {
       this.toastr.error('Login! Please try again');
     });
 
-
   }
   return;
 
 }
-
-
 
 }

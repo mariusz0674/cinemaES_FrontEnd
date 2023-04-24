@@ -6,7 +6,6 @@ import {map, Observable, tap} from "rxjs";
 import {LoginRequestPayload} from "./payload/login.request.payload";
 import {AuthResponse} from "./payload/auth.response";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +15,6 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient,
               private localStorage: LocalStorageService) {
-
   }
   isLoggedIn(): boolean {
 
@@ -61,10 +59,6 @@ export class AuthService {
       //  this.localStorage.store('expiresAt', response.expiresAt);
       }));
   }
-  //
-
-
-  //
   getRefreshToken() {
     return this.localStorage.retrieve('refreshtoken');
   }

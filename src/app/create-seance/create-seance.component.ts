@@ -12,7 +12,6 @@ import {SimpleSeanceModel} from "../dto/simple-seance-model";
   styleUrls: ['./create-seance.component.css']
 })
 export class CreateSeanceComponent {
-
   seanceForm: FormGroup;
   errorMessage: string;
 
@@ -38,7 +37,6 @@ export class CreateSeanceComponent {
     movie_title: ''
   };
 
-
   constructor(private seanceService: SeancesService,
               private movieService: MovieService) { }
 
@@ -54,7 +52,6 @@ export class CreateSeanceComponent {
     });
     this.getHalls();
     this.getMovies();
-
 
   }
 
