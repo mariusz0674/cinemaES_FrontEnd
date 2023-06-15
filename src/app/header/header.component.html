@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-light bg-light own-settings-navbar" >
   <div class=" navbar-collapse mr-auto">
     <a class="navbar-brand ml-auto" routerLink="/home">Cinema ES</a>
   </div>
@@ -6,20 +6,20 @@
   <div class="  ml-auto">
     <ul class="navbar-nav ">
 
-      <li class="nav-item" *ngIf="checkMyPermissions('seances-simple-list')">
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLoggedIn$ && checkMyPermissions('seances-simple-list')">
         <a class="nav-link" routerLink="/seances-simple-list">Seances</a>
       </li>
 
-      <li class="nav-item" *ngIf="checkMyPermissions('movie-list')" >
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLoggedIn$ && checkMyPermissions('movie-list')" >
         <a class="nav-link" routerLink="/movie-list">Movies</a>
       </li>
-      <li class="nav-item" *ngIf="checkMyPermissions('user-managment')" >
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLoggedIn$ && checkMyPermissions('user-managment')" >
         <a class="nav-link" routerLink="/user-managment">Users</a>
       </li>
-      <li class="nav-item" *ngIf="checkMyPermissions('create-seance')" >
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLoggedIn$ && checkMyPermissions('create-seance')" >
         <a class="nav-link" routerLink="/create-seance">Create Seance</a>
       </li>
-      <li class="nav-item" *ngIf="checkMyPermissions('create-movie')" >
+      <li routerLinkActive="active" class="nav-item" *ngIf="isLoggedIn$ && checkMyPermissions('create-movie')" >
         <a class="nav-link" routerLink="/create-movie">Create Movie</a>
       </li>
     </ul>

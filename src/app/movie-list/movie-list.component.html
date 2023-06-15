@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <h3 class="text-primary">Movies:</h3>
       <ul class="list-group">
-        <li *ngFor="let movie of movies" class="list-group-item"
+        <li *ngFor="let movie of movies" class="list-group-item film-list-item"
             [ngClass]="{active: isSelected(movie)}"
             (click)="onSelectMovie(movie)">
           {{ movie.title }}

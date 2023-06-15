@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit{
 
 
   logout(): void {
+    this.isLoggedIn$ = false;
     this.authService.logout();
-    location.reload()
     this.router.navigate(['/']);
   }
 
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit{
     //location.reload()
   }
   ngOnChanges(){
-    location.reload()
+
   }
   isLogIn(): boolean{
     this.isLoggedIn$ = this.authService.isLoggedIn();
